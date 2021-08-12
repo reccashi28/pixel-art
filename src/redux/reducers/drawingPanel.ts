@@ -6,6 +6,7 @@ const initState: DrawingPanelState = {
 
 const drawingPanel = (state=initState, action: DrawingPanelActions): DrawingPanelState => {
     switch(action.type) {
+        
         case GET_DRAWING_PANEL_COLOR: {
             return { ...state, color: action.payload.data}
         }

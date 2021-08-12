@@ -7,11 +7,20 @@ import store from './redux/store';
 import reportWebVitals from './reportWebVitals';
 
 import './index.css';
+import { createTheme, ThemeProvider } from '@material-ui/core';
+import { blue, green } from '@material-ui/core/colors';
 
-
+const customTheme = createTheme({
+  palette: {
+    primary: blue,
+    secondary: green,
+  }
+})
 const WithProvider = () => (
   <Provider store={store} >
-    <App />
+    <ThemeProvider theme={customTheme}>
+      <App />
+    </ThemeProvider>
   </Provider>
 )
 
