@@ -1,7 +1,9 @@
 import { DrawingPanelActions, DrawingPanelState, GET_DRAWING_PANEL_COLOR } from "../../types";
 
 const initState: DrawingPanelState = {
-        color: ""
+        color: "",
+        dimensions: 16,
+
 }
 
 const drawingPanel = (state=initState, action: DrawingPanelActions): DrawingPanelState => {

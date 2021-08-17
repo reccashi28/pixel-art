@@ -1,10 +1,12 @@
 import React from 'react'
 
+import { Box, Grid, Typography } from '@material-ui/core'
+
 function Header() {
     return (
-        <div>
-            this is header
-        </div>
+        <Box display='flex' justifyContent='center' flexGrow={1}>
+            <Typography>Pixel Art</Typography>
+        </Box>
     )
 }
 

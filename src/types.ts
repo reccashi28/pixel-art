@@ -10,7 +10,8 @@ export type getDrawingPanelColor = {
 export type DrawingPanelActions = getDrawingPanelColor
 
 export type DrawingPanelState = {
-    color: string
+    color: string,
+    dimensions: number,
 }
 
 export type AppState = {

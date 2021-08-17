@@ -7,7 +7,8 @@ const middlewares = [thunk]
 
 const initState = {
     drawingPanel: {
-        color: ''
+        color: '',
+        dimensions: 16,
     }
 }
 const store = createStore( createRootReducer(), initState, compose(applyMiddleware(...middlewares)))
