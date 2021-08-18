@@ -1,8 +1,8 @@
-import { DrawingPanelActions, DrawingPanelState, GET_DRAWING_PANEL_COLOR } from "../../types";
+import { DrawingPanelActions, DrawingPanelState, GET_DIMENSION_VALUE, GET_DRAWING_PANEL_COLOR } from "../../types";
 
 const initState: DrawingPanelState = {
         color: "",
-        dimensions: 16,
+        dimension: 16,
 
 }
 
@@ -11,6 +11,9 @@ const drawingPanel = (state=initState, action: DrawingPanelActions): DrawingPane
         
         case GET_DRAWING_PANEL_COLOR: {
             return { ...state, color: action.payload.data}
+        }
+        case GET_DIMENSION_VALUE: {
+            return { ...state, dimension: action.payload.data}
         }
         default: {
             return state

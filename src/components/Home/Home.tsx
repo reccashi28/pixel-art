@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 
 import { Box, Button, FormControl, InputLabel, makeStyles, MenuItem, Select, Typography } from '@material-ui/core'
+import { AppState } from '../../types';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDimensionValue } from '../../redux/actions/drawingPanel';
 
 const useStyles = makeStyles( {
     titel: {
@@ -13,11 +16,13 @@ const useStyles = makeStyles( {
 
 function Home() {
     const classes = useStyles();
-    const [age, setAge] = useState<string>('');
-
+    const { dimension } =  useSelector( (state: AppState) => state.drawingPanel)
+    const dispatch = useDispatch();
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setAge(event.target.value as string);
+        dispatch(getDimensionValue(event.target.value as number))
       };
+
+      console.log(dimension, "dimension value")
 
     return (
         <div>
@@ -28,7 +33,7 @@ function Home() {
                     <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={age}
+                    value={dimension}
                     onChange={handleChange}
                     >
                     <MenuItem value={16}>4x4</MenuItem>
