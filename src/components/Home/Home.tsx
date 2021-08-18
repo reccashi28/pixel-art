@@ -36,10 +36,10 @@ function Home() {
                     value={dimension}
                     onChange={handleChange}
                     >
-                    <MenuItem value={16}>4x4</MenuItem>
-                    <MenuItem value={64}>8x8</MenuItem>
-                    <MenuItem value={256}>16x16</MenuItem>
-                    <MenuItem value={1024}>32x32</MenuItem>
+                    <MenuItem value={4}>4x4</MenuItem>
+                    <MenuItem value={8}>8x8</MenuItem>
+                    <MenuItem value={16}>16x16</MenuItem>
+                    <MenuItem value={32}>32x32</MenuItem>
                     </Select>
                 </FormControl>
                 <Box p={3}>

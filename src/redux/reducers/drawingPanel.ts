@@ -2,7 +2,7 @@ import { DrawingPanelActions, DrawingPanelState, GET_DIMENSION_VALUE, GET_DRAWIN
 
 const initState: DrawingPanelState = {
         color: "",
-        dimension: 16,
+        dimension: 4,
 
 }
 
