@@ -7,10 +7,23 @@ import { Box, Grid, makeStyles, Paper, Table, TableBody, TableCell, TableContain
 
 const useStyles = makeStyles( {
     drawingPanelRoot: {
+        display: 'flex',
+        justifyContent: 'center',
     },
      table: {
-    minWidth: 650,
+    minWidth: 300,
   },
+  panelCell: {
+      width: 20,
+      height: 20,
+      '&:hover':{
+          backgroundColor: 'gray',
+          curso: 'default'
+      },
+      borderWidth: 1,
+      borderColor: 'black',
+      borderStyle: 'solid',
+  }
 })
 
 function DrawingPanel() {
@@ -21,7 +34,7 @@ function DrawingPanel() {
         let cell = []
         for(let i = 0; i < dimension; i++) {
             console.log(i, 'i');
-        cell.push(<TableCell key={i}>{i}</TableCell>)
+        cell.push(<TableCell className={classes.panelCell} key={i}></TableCell>)
         }
 
         return cell;
@@ -30,13 +43,12 @@ function DrawingPanel() {
     const createRowDrawingPanel = () => {
         let row = [];
         for(let i = 0; i < dimension; i++) {
-            console.log(i, 'i');
         row.push(<TableRow>{createColumnDrawingPanel()}</TableRow>)
         }
         return row;
     }
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} className={classes.drawingPanelRoot}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                 <TableRow>
