@@ -4,6 +4,7 @@ import { AppState } from '../../types';
 
 
 import { Box, Grid, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core'
+import { CompactPicker } from 'react-color'
 
 const useStyles = makeStyles( {
     drawingPanelRoot: {
@@ -48,18 +49,21 @@ function DrawingPanel() {
         return row;
     }
     return (
-        <TableContainer component={Paper} className={classes.drawingPanelRoot}>
-            <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                <TableRow>
-                    {createColumnDrawingPanel()}
-                </TableRow>
-                </TableHead>
-                <TableBody>
-                    {createRowDrawingPanel()}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <>
+            <CompactPicker />
+            <TableContainer component={Paper} className={classes.drawingPanelRoot}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                    <TableRow>
+                        {createColumnDrawingPanel()}
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {createRowDrawingPanel()}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </>
     )
 }
 
