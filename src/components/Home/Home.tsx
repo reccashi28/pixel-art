@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Box, Button, FormControl, InputLabel, makeStyles, MenuItem, Select, Typography } from '@material-ui/core'
 import { AppState } from '../../types';
@@ -21,8 +21,6 @@ function Home() {
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         dispatch(getDimensionValue(event.target.value as number))
       };
-
-      console.log(dimension, "dimension value")
 
     return (
         <div>

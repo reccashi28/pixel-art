@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { Box, createStyles, makeStyles, Paper, Theme } from '@material-ui/core';
 
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header/Header';
 import DrawingPanel from './components/DrawingPanel/DrawingPanel';

@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { AppState } from '../../types';
 
 
-import { Box, Grid, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core'
+import { makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core'
 import { CompactPicker } from 'react-color'
 
 const useStyles = makeStyles( {
@@ -27,15 +27,22 @@ const useStyles = makeStyles( {
   }
 })
 
+type colorChangePropType = {
+    hex: string
+}
+
 function DrawingPanel() {
     const classes = useStyles();
     const { dimension } = useSelector( (state: AppState) => state.drawingPanel)
+    const [color, setColor ] = useState<colorChangePropType>({hex: '#000'})
 
-    const createColumnDrawingPanel = () => {
+    const changeBackgroundColor = (e: React.MouseEvent<HTMLTableHeaderCellElement, MouseEvent>): void => {
+        e.currentTarget.style.backgroundColor = `${color.hex}`
+    }
+     const createColumnDrawingPanel = () => {
         let cell = []
         for(let i = 0; i < dimension; i++) {
-            console.log(i, 'i');
-        cell.push(<TableCell className={classes.panelCell} key={i}></TableCell>)
+            cell.push(<TableCell className={classes.panelCell} key={i} onClick={changeBackgroundColor}></TableCell>)
         }
 
         return cell;
@@ -44,13 +51,16 @@ function DrawingPanel() {
     const createRowDrawingPanel = () => {
         let row = [];
         for(let i = 0; i < dimension; i++) {
-        row.push(<TableRow>{createColumnDrawingPanel()}</TableRow>)
+        row.push(<TableRow key={i}>{createColumnDrawingPanel()}</TableRow>)
         }
         return row;
     }
+    const handleChangeComplete = (color: colorChangePropType): void => {
+        setColor({hex: color.hex})
+    }
     return (
         <>
-            <CompactPicker />
+            <CompactPicker color={color.hex} onChangeComplete={handleChangeComplete} />
             <TableContainer component={Paper} className={classes.drawingPanelRoot}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>

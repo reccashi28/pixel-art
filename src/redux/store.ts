@@ -5,7 +5,7 @@ import createRootReducer from './reducers/index'
 
 const middlewares = [thunk]
 
-const initState = {
+const initState: AppState = {
     drawingPanel: {
         color: '',
         dimension: 4,
