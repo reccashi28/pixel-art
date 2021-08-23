@@ -4,6 +4,7 @@ import { Box, Button, FormControl, InputLabel, makeStyles, MenuItem, Select, Typ
 import { AppState } from '../../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDimensionValue } from '../../redux/actions/drawingPanel';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles( {
     titel: {
@@ -18,10 +19,14 @@ function Home() {
     const classes = useStyles();
     const { dimension } =  useSelector( (state: AppState) => state.drawingPanel)
     const dispatch = useDispatch();
+    const history = useHistory();
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         dispatch(getDimensionValue(event.target.value as number))
-      };
-
+    };
+    
+    const moveToDrawingPanel = ():void => {
+        history.push('/drawingpanel')
+    }
     return (
         <div>
             <Typography className={classes.titel} variant='h5'>Choose Panel Dimensions</Typography>
@@ -41,7 +46,7 @@ function Home() {
                     </Select>
                 </FormControl>
                 <Box p={3}>
-                    <Button variant='contained' color='primary'>Start Drawing</Button>
+                    <Button variant='contained' color='primary' onClick={moveToDrawingPanel}>Start Drawing</Button>
                 </Box>
             </Box>
         </div>

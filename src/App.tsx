@@ -16,9 +16,16 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       flexDirection: 'column',
       alignItems: 'center',
-      padding: theme.spacing(6)
+      padding: theme.spacing(6),
+      [theme.breakpoints.down('xs')]: {
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1),
+      }
     },
-    body: {
+    body: { 
+      [theme.breakpoints.down('sm')]: {
+        width: '100%',
+      },
       width: '70%',
       minWidth: 280,
     },
@@ -28,7 +35,9 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       flexDirection: 'column',
       alignItems: 'center',
-      
+      [theme.breakpoints.down('sm')]: {
+        padding: 10,
+      },
     }
   }),
 );
@@ -45,8 +54,6 @@ function App() {
               <Switch>
                 <Route exact path='/'>
                   <Home />
-                  <DrawingPanel />
-
                 </Route>
                 <Route exact path='/drawingpanel'>
                   <DrawingPanel />
