@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../types';
 
 
-import { Button, createStyles, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Theme } from '@material-ui/core'
+import { Box, Button, createStyles, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Theme } from '@material-ui/core'
 import { CompactPicker } from 'react-color'
 import { useHistory } from 'react-router-dom';
 
@@ -99,8 +99,10 @@ function DrawingPanel() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Button variant="contained" color='primary' className={classes.btnReset} onClick={selectDimension}>Reset</Button>
-
+            <Box>
+                <Button variant="contained" color='primary' className={classes.btnReset} onClick={selectDimension}>Reset</Button>
+                <Button variant="contained" color='secondary' className={classes.btnReset}>Download</Button>
+            </Box>
         </>
     )
 
