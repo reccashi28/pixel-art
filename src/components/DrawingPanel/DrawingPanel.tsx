@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import { AppState } from '../../types';
-
-
-import { Box, Button, createStyles, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Theme } from '@material-ui/core'
+import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import { CompactPicker } from 'react-color'
 import { useHistory } from 'react-router-dom';
+
+import { Box, Button, createStyles, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Theme } from '@material-ui/core'
+
+import { AppState } from '../../types';
+import Buttons from '../Buttons/Buttons';
+
 
 const useStyles = makeStyles( (theme: Theme) => 
 createStyles({
@@ -102,6 +105,7 @@ function DrawingPanel() {
             <Box>
                 <Button variant="contained" color='primary' className={classes.btnReset} onClick={selectDimension}>Reset</Button>
                 <Button variant="contained" color='secondary' className={classes.btnReset}>Download</Button>
+                <Buttons />
             </Box>
         </>
     )
