@@ -5,13 +5,17 @@ import { useRef, useState } from "react";
 
 const options = ['Export as PNG', 'Export as PDF', 'Export as JPEG'];
 
-export default function SplitButton() {
+type ButtonsProps = {
+  printDrawingPanel(event: React.MouseEvent<HTMLElement>): void
+}
+
+const Buttons = ({printDrawingPanel}: ButtonsProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const anchorRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
 
-  const handleClick = () => {
-    console.info(`You clicked ${options[selectedIndex]}`);
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    printDrawingPanel(e)
   };
 
   const handleMenuItemClick = (
@@ -81,3 +85,5 @@ export default function SplitButton() {
     </Grid>
   );
 }
+
+export default Buttons;

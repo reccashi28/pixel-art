@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import { CompactPicker } from 'react-color'
@@ -15,7 +15,7 @@ createStyles({
     drawingPanelRoot: {
         display: 'flex',
         justifyContent: 'center',
-        marginTop: '2rem'
+        paddingTop: '2rem'
     },
     table: {
         // width: '100%'
@@ -29,7 +29,7 @@ createStyles({
         // }
     },
     colorPicker: {
-        margin: '1rem',
+        margin: '2rem',
     },
     btnReset: {
         marginTop: '1.5rem'
@@ -48,6 +48,7 @@ function DrawingPanel() {
     const [canChangeCollor, setCanChangeCollor] = useState<boolean>(true)
     const [oldColor, setOldColor] = useState<string>('')
     const history = useHistory();
+    const drawingPanelRef: React.RefObject<HTMLElement> = useRef(null);
     const changeBackgroundColor = (e: React.MouseEvent<HTMLTableHeaderCellElement, MouseEvent>): void => {
         e.currentTarget.style.backgroundColor = `${color.hex}`
         setCanChangeCollor(false)
@@ -87,10 +88,31 @@ function DrawingPanel() {
         history.push('/')
     }
 
+    const printDrawingPanel = (event: React.MouseEvent<HTMLElement>): void => {
+        let printType: string = event.currentTarget.innerText;
+        const PNG: string = "EXPORT AS PNG";
+        // console.log(typeof("Export as PNG"))
+        console.log(printType, PNG)
+        if(printType === "EXPORT AS PNG") {
+            exportComponentAsPNG(drawingPanelRef)
+            console.log('png')
+        } else if( printType === "EXPORT AS PDF") {
+            exportComponentAsPDF(drawingPanelRef)
+            console.log('pdf')
+
+        } else if(printType === "EXPORT AS JPEG"){
+            exportComponentAsJPEG(drawingPanelRef)
+            console.log('jpeg')
+
+        }
+    }
+
     return (
         <>
-            <CompactPicker color={color.hex} onChangeComplete={handleChangeComplete} className={classes.colorPicker} />
-            <TableContainer component={Paper} className={classes.drawingPanelRoot}>
+            <Box className={classes.colorPicker}>
+                <CompactPicker color={color.hex} onChangeComplete={handleChangeComplete} />
+            </Box>
+            <TableContainer component={Paper} className={classes.drawingPanelRoot} ref={drawingPanelRef}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -104,8 +126,7 @@ function DrawingPanel() {
             </TableContainer>
             <Box>
                 <Button variant="contained" color='primary' className={classes.btnReset} onClick={selectDimension}>Reset</Button>
-                <Button variant="contained" color='secondary' className={classes.btnReset}>Download</Button>
-                <Buttons />
+                <Buttons printDrawingPanel={printDrawingPanel} />
             </Box>
         </>
     )
