@@ -38,6 +38,8 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.down('sm')]: {
         padding: 10,
       },
+      borderBottomLeftRadius: 5,
+      borderBottomRightRadius: 5,
     }
   }),
 );

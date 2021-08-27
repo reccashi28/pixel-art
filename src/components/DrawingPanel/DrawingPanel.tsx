@@ -15,25 +15,29 @@ createStyles({
     drawingPanelRoot: {
         display: 'flex',
         justifyContent: 'center',
-        paddingTop: '2rem'
+        marginTop: '2rem',
+        width: 'auto',
+        padding: '1rem',
     },
     table: {
-        // width: '100%'
+        width: 'auto'
     },
     panelCell: {
-        // width: '1.5rem',
+        width: '1.5rem',
         height: '1.5rem',
-        borderBottom: "none",
-        // [theme.breakpoints.up('xs')]: {
-        //     heigh,
-        // }
+        border: "none",
+        [theme.breakpoints.down('xs')]: {
+            width: '1rem',
+            height: '1rem',
+        }
+    },
+    colorPickerBox: {
+        margin: '2rem',
+        width: 280,
     },
     colorPicker: {
-        margin: '2rem',
+        width: '100%',
     },
-    btnReset: {
-        marginTop: '1.5rem'
-    }
 }),
 );
 
@@ -91,26 +95,26 @@ function DrawingPanel() {
     const printDrawingPanel = (event: React.MouseEvent<HTMLElement>): void => {
         let printType: string = event.currentTarget.innerText;
         const PNG: string = "EXPORT AS PNG";
-        // console.log(typeof("Export as PNG"))
-        console.log(printType, PNG)
-        if(printType === "EXPORT AS PNG") {
+        const JPEG: string = "EXPORT AS JPEG";
+        const PDF: string = "EXPORT AS PDF"
+
+        if(printType === PNG) {
             exportComponentAsPNG(drawingPanelRef)
-            console.log('png')
-        } else if( printType === "EXPORT AS PDF") {
+        } else if( printType === PDF) {
             exportComponentAsPDF(drawingPanelRef)
-            console.log('pdf')
-
-        } else if(printType === "EXPORT AS JPEG"){
+        } else if(printType === JPEG){
             exportComponentAsJPEG(drawingPanelRef)
-            console.log('jpeg')
-
         }
     }
 
     return (
         <>
-            <Box className={classes.colorPicker}>
-                <CompactPicker color={color.hex} onChangeComplete={handleChangeComplete} />
+            <Box className={classes.colorPickerBox}>
+                <CompactPicker className={classes.colorPicker} color={color.hex} onChangeComplete={handleChangeComplete} />
+            </Box>
+            <Box display='flex' p={3} justifyContent='center'>
+                <Button variant="contained" color='primary' onClick={selectDimension}>Reset</Button>
+                <Buttons printDrawingPanel={printDrawingPanel} />
             </Box>
             <TableContainer component={Paper} className={classes.drawingPanelRoot} ref={drawingPanelRef}>
                 <Table className={classes.table} aria-label="simple table">
@@ -124,10 +128,7 @@ function DrawingPanel() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Box>
-                <Button variant="contained" color='primary' className={classes.btnReset} onClick={selectDimension}>Reset</Button>
-                <Buttons printDrawingPanel={printDrawingPanel} />
-            </Box>
+            
         </>
     )
 
