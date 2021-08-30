@@ -8,7 +8,7 @@ const middlewares = [thunk]
 const initState: AppState = {
     drawingPanel: {
         color: '',
-        dimension: 4,
+        dimension: 8,
     }
 }
 const store = createStore( createRootReducer(), initState, compose(applyMiddleware(...middlewares)))

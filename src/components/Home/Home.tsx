@@ -39,8 +39,8 @@ function Home() {
                     value={dimension}
                     onChange={handleChange}
                     >
-                    <MenuItem value={4}>4x4</MenuItem>
                     <MenuItem value={8}>8x8</MenuItem>
+                    <MenuItem value={12}>12x12</MenuItem>
                     <MenuItem value={16}>16x16</MenuItem>
                     <MenuItem value={32}>32x32</MenuItem>
                     </Select>

@@ -9,7 +9,6 @@ import { Box, Button, createStyles, makeStyles, Paper, Table, TableBody, TableCe
 import { AppState } from '../../types';
 import Buttons from '../Buttons/Buttons';
 
-
 const useStyles = makeStyles( (theme: Theme) => 
 createStyles({
     drawingPanelRoot: {
@@ -36,7 +35,8 @@ createStyles({
         width: 280,
     },
     colorPicker: {
-        width: '100%',
+        width: '50px',
+        height: '50px',
     },
 }),
 );
